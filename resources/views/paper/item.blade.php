@@ -40,12 +40,12 @@
             </tr>
         </tbody>
     </table>
-    </di>
-    <script>
-    $(document).ready(function() {
-        $('#table_id').DataTable();
+</div>
+<script>
+$(document).ready(function() {
+    $('#table_id').DataTable();
 
-        $('.dataTables_length').addClass('bs-select');
-    });
-    </script>
-    @endsection
+    $('.dataTables_length').addClass('bs-select');
+});
+</script>
+@endsection
