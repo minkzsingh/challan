@@ -1,0 +1,10 @@
+.fluid {
+    background-color: #ffffff;
+    border: 1px solid rgb(180, 177, 177);
+    border-radius: 5px;
+}
+
+#wrapper {
+    padding: 20px;
+    margin: 0 auto;
+}
