@@ -7,7 +7,8 @@
     <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>Challan</title>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+        name='viewport' />
 
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
@@ -20,8 +21,9 @@
     <link href="{{ asset('css/paper-dashboard.css') }}" rel="stylesheet">
     <link href="{{ asset('css/datatable.css') }}" rel="stylesheet">
     <!-- 
-    <link href="{{ asset('assets/handsontable/dist/handsontable.full.css') }}" rel="stylesheet">
-    <script src="{{ asset('assets/handsontable/dist/handsontable.full.js') }}" type="text/javascript"></script> -->
+        <link href="{{ asset('assets/handsontable/dist/handsontable.full.css') }}" rel="stylesheet">
+        <script src="{{ asset('assets/handsontable/dist/handsontable.full.js') }}" type="text/javascript"></script> -->
+    <link href="{{ asset('assets/bootstra/css/bootstrap.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
@@ -41,10 +43,10 @@
             </nav>
             <!-- End Navbar -->
             <!-- <div class="panel-header panel-header-lg">
-
+                
   <canvas id="bigDashboardChart"></canvas>
-
-
+  
+  
 </div> -->
             <div class="content">
                 @yield('content')
@@ -55,12 +57,12 @@
         </div>
     </div>
     <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/bootstra/js/bootstrap.js') }}" type="text/javascript"></script> -->
 
     <script>
-        $(document).ready(function() {
-            // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
-            console.log('ddfd')
-        });
+    $(document).ready(function() {
+        // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
+    });
     </script>
 </body>
 
