@@ -93,11 +93,12 @@
         $('#save').on('click', function() {
             var id = '',
                 name = $('#item_name').val(),
+                status = $('#my-modal').attr('status')
                 quantity = $('#quantity').val(),
                 url = 'api/item',
                 type = 'POST';
 
-            if ($('#my-modal').attr('status') == 'edit') {
+            if (status == 'edit') {
                 id = $('#my-modal').attr('row_id');
                 url = 'api/item/' + id, type = 'PUT';
             }
@@ -108,7 +109,7 @@
             };
 
             //Params == url, type(POST), request data, modal id to hide, table to reload
-            saveData(url, type, data, "#my-modal", table);
+            saveData(url, type, data, "#my-modal", table, status);
         });
 
         //Edit

@@ -29,6 +29,11 @@
     <script src="{{ asset('js/datatable_service.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/helper_functions.js') }}" type="text/javascript"></script>
 
+    <!-- toaster -->
+    <link href="{{  asset('assets/toastr/toastr.css') }}" rel="stylesheet">
+    <script src="{{ asset('assets/toastr/toastr.min.js') }}" type="text/javascript"></script>
+
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
 </head>

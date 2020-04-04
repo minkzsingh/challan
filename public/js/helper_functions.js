@@ -1,5 +1,5 @@
 //Save data Ajax
-function saveData(url, type, data, table) {
+function saveData(url, type, data, modal_id, table, status) {
     $.ajax({
         url: url,
         type: type,
@@ -8,7 +8,16 @@ function saveData(url, type, data, table) {
             $(modal_id).modal('hide');
             table.ajax.reload();
         },
-        success: function(res) {}
+        success: function(res) {
+            var msg = 'Successfully Saved';
+            if (status == 'edit')
+                msg = 'Successfully Updated';
+
+            toastr.options = {
+                positionClass: "toast-bottom-right"
+            };
+            toastr.success(msg);
+        }
     });
 }
 
@@ -19,6 +28,10 @@ function deleteData(url, table) {
             text: "Once deleted, you will not be able to recover",
             icon: "warning",
             buttons: true,
+            buttons: {
+                cancel: 'Cancel',
+                confirm: { text: 'Yes Delete It', className: 'sweet-warning' }
+            },
             dangerMode: true,
         })
         .then((willDelete) => {
