@@ -1,6 +1,6 @@
-
 <!-- Model -->
-<div id="my-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true" status='save'>
+<div id="my-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true"
+    status='save'>
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
@@ -35,7 +35,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-raised btn-raised btn-danger mr-1" data-dismiss="modal" <i class="ft-x"></i> Cancel
+                <button type="button" class="btn btn-raised btn-raised btn-danger mr-1" data-dismiss="modal" <i
+                    class="ft-x"></i> Cancel
                 </button>
                 <button type="submit" class="btn btn-raised btn-raised btn-primary" id="save">
                     <i class="fa fa-check-square-o"></i> Save

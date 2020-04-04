@@ -1,24 +1,32 @@
 //Save data Ajax
 function saveData(url, type, data, modal_id, table, status) {
     $.ajax({
-        url: url,
-        type: type,
-        data: data,
-        complete: function() {
+            url: url,
+            type: type,
+            data: data,
+            complete: function() {},
+            success: function(res) {
+                var msg = 'Successfully Saved';
+                if (status == 'edit')
+                    msg = 'Successfully Updated';
+
+                toastr.options = {
+                    positionClass: "toast-bottom-right"
+                };
+                toastr.success(msg);
+            }
+        }).done(function(data) {
             $(modal_id).modal('hide');
             table.ajax.reload();
-        },
-        success: function(res) {
-            var msg = 'Successfully Saved';
-            if (status == 'edit')
-                msg = 'Successfully Updated';
-
-            toastr.options = {
-                positionClass: "toast-bottom-right"
-            };
-            toastr.success(msg);
-        }
-    });
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            var error = jqXHR.responseJSON.errors;
+            $.each(error, function(k, v) {
+                toastr.error(v[0]);
+                // console.log('#' + k + '_error');
+                // $('#' + k + '_error').text(v[0]);
+            });
+        });
 }
 
 //Delete Data Ajax
