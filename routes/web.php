@@ -22,7 +22,7 @@ Route::get('/dashboard', function () {
 })->name('dashboard');
 
 Route::get('/item', function () {
-    return view('paper.item');
+    return view('paper.item.item');
 })->name('item');
 
 Route::get('/company', function () {
