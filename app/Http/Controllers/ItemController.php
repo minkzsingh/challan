@@ -9,7 +9,7 @@ class ItemController extends Controller
 {
     public function index()
     {
-        return Item::all();
+        return array('data'=>Item::select('id', 'name', 'quantity')->get());
     }
 
     public function show(Item $item)

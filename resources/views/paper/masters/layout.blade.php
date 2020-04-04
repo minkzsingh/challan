@@ -16,14 +16,14 @@
     <!-- <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> -->
 
     <!-- CSS Files -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/paper-dashboard.css') }}" rel="stylesheet">
     <link href="{{ asset('css/datatable.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/bootstra/css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- 
         <link href="{{ asset('assets/handsontable/dist/handsontable.full.css') }}" rel="stylesheet">
         <script src="{{ asset('assets/handsontable/dist/handsontable.full.js') }}" type="text/javascript"></script> -->
-    <link href="{{ asset('assets/bootstra/css/bootstrap.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>

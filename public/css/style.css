@@ -8,3 +8,11 @@
     padding: 20px;
     margin: 0 auto;
 }
+
+.ml-2 {
+    margin-left: 10px;
+}
+
+.p-lr-30 {
+    padding: 0 31px;
+}
