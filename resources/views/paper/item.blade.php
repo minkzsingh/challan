@@ -93,7 +93,7 @@
             aoColumnDefs: [{
                 sWidth: "16%",
                 aTargets: [-1]
-            }], 
+            }],
             ajax: {
                 url: "api/item",
                 data: {}
@@ -144,10 +144,9 @@
         });
 
         //Edit
-        
+
         $('#table_id tbody').on('click', 'button.edit', function() {
             var data = table.row($(this).parents('tr')).data();
-            console.log(data);
 
             alert(data.name + "'s salary is: " + data.quantity);
         });
@@ -155,20 +154,35 @@
         //Delete
         $('#table_id tbody').on('click', 'button.delete', function() {
             var data = table.row($(this).parents('tr')).data();
-            $.ajax({
-                url: 'api/item/' + data.id,
-                type: 'DELETE',
-                data: {
-                    _token: "{{ csrf_token() }}",
-                },
-                complete: function() {
-                    $('#my-modal').modal('hide');
-                    table.ajax.reload();
-                },
-                success: function(res) {
-                    console.log(res)
-                }
-            });
+
+            swal({
+                    title: "Are you sure? To Delete " + data.name,
+                    text: "Once deleted, you will not be able to recover",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            url: 'api/item/' + data.id,
+                            type: 'DELETE',
+                            data: {
+                                _token: "{{ csrf_token() }}",
+                            },
+                            complete: function() {
+                                table.ajax.reload();
+                            },
+                            success: function(res) {
+                                swal("Poof! Your " + data.name + " has been deleted!", {
+                                    icon: "success",
+                                });
+                            }
+                        });
+                    } else {
+                        swal("Your " + data.name + " is safe!");
+                    }
+                });
         });
     });
 </script>
