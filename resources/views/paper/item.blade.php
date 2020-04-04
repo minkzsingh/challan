@@ -75,33 +75,14 @@
 
 <script>
     $(document).ready(function() {
-        var table = $('#table_id').DataTable({
-            bScrollCollapse: true,
-            bJQueryUI: true,
-            aoColumnDefs: [{
-                sWidth: "16%",
-                aTargets: [-1]
-            }],
-            ajax: {
-                url: "api/item",
-                data: {}
-            },
-            columns: [{
-                    data: "id"
-                },
-                {
-                    data: "name"
-                },
-                {
-                    data: "quantity"
-                },
-                {
-                    mRender: function(data, type, row) {
-                        return '<button type="button" class="btn btn-primary edit" style="width: 60px;margin-right:10px;">Edit</button><button type="button" class="btn btn-danger delete" style="width: 80px;">Delete</button>';
-                    }
-                }
-            ]
 
+        //Data Table
+        var table = getTable({
+            table_id: '#table_id',
+            url: "api/item",
+            data: {
+                //user_id:12
+            }
         });
 
         //Add
@@ -121,25 +102,16 @@
                 url = 'api/item/' + id, type = 'PUT';
             }
 
-            $.ajax({
-                url: url,
-                type: type,
-                data: {
-                    _token: "{{ csrf_token() }}",
-                    name: name,
-                    quantity: quantity
-                },
-                complete: function() {
-                    $('#my-modal').modal('hide');
-                    table.ajax.reload();
-                },
-                success: function(res) {
-                }
-            });
+            var data = {
+                name: name,
+                quantity: quantity
+            };
+
+            //Params == url, type(POST), request data, modal id to hide, table to reload
+            saveData(url, type, data, "#my-modal", table);
         });
 
         //Edit
-
         $('#table_id tbody').on('click', 'button.edit', function() {
             var data = table.row($(this).parents('tr')).data();
 
@@ -151,38 +123,12 @@
             $('#save').text('Update');
         });
 
-        //Delete
+        //Delete 
         $('#table_id tbody').on('click', 'button.delete', function() {
             var data = table.row($(this).parents('tr')).data();
 
-            swal({
-                    title: "Are you sure? To Delete " + data.name,
-                    text: "Once deleted, you will not be able to recover",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        $.ajax({
-                            url: 'api/item/' + data.id,
-                            type: 'DELETE',
-                            data: {
-                                _token: "{{ csrf_token() }}",
-                            },
-                            complete: function() {
-                                table.ajax.reload();
-                            },
-                            success: function(res) {
-                                swal("Poof! Your " + data.name + " has been deleted!", {
-                                    icon: "success",
-                                });
-                            }
-                        });
-                    } else {
-                        swal("Your " + data.name + " is safe!");
-                    }
-                });
+            //Params -- url, row id, table to reload
+            deleteData('api/item/' + data.id, table);
         });
     });
 </script>
