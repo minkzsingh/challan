@@ -39,7 +39,7 @@
 </div>
 
 <!-- Add Model -->
-<div id="my-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
+<div id="my-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true" status='save'>
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
@@ -54,8 +54,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group p-lr-30">
-                                    <label for="name">Item Name</label>
-                                    <input type="text" id="name" class="form-control" name="item_name" />
+                                    <label for="item_name">Item Name</label>
+                                    <input type="text" id="item_name" class="form-control" name="item_name" />
                                 </div>
                             </div>
                         </div>
@@ -122,12 +122,20 @@
         });
 
         $('#save').on('click', function() {
-            var name = $('#name').val(),
-                quantity = $('#quantity').val();
+            var id = '',
+                name = $('#item_name').val(),
+                quantity = $('#quantity').val(),
+                url = 'api/item',
+                type = 'POST';
+
+            if ($('#my-modal').attr('status') == 'edit') {
+                id = $('#my-modal').attr('row_id');
+                url = 'api/item/' + id, type = 'PUT';
+            }
 
             $.ajax({
-                url: 'api/item',
-                type: 'POST',
+                url: url,
+                type: type,
                 data: {
                     _token: "{{ csrf_token() }}",
                     name: name,
@@ -148,7 +156,12 @@
         $('#table_id tbody').on('click', 'button.edit', function() {
             var data = table.row($(this).parents('tr')).data();
 
-            alert(data.name + "'s salary is: " + data.quantity);
+            $('#my-modal').modal('show');
+            $('#my-modal').attr('row_id', data.id).attr('status', 'edit');
+            $('#my-modal-title').text('Edit Item');
+            $('#item_name').val(data.name);
+            $('#quantity').val(data.quantity);
+            $('#save').text('Update');
         });
 
         //Delete
