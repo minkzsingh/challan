@@ -32,8 +32,6 @@
     <!-- toaster -->
     <link href="{{  asset('assets/toastr/toastr.css') }}" rel="stylesheet">
     <script src="{{ asset('assets/toastr/toastr.min.js') }}" type="text/javascript"></script>
-
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
 </head>
@@ -64,8 +62,10 @@
         </div>
     </div>
     <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/bootstra/js/bootstrap.js') }}" type="text/javascript"></script> -->
+    <script src="{{ asset('assets/bootstra/js/bootstrap.js') }}" type="text/javascript"></script>
 
+    <script src="{{ asset('assets/validation/jquery.validate.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/validation/additional-methods.js') }}" type="text/javascript"></script>
     <script>
         $(document).ready(function() {
             // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
