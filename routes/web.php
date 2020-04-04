@@ -26,11 +26,11 @@ Route::get('/item', function () {
 })->name('item');
 
 Route::get('/company', function () {
-    return view('paper.company');
+    return view('paper.company.company');
 })->name('company');
 
 Route::get('/challan', function () {
-    return view('paper.challan');
+    return view('paper.challan.challan');
 })->name('challan');
 
 Route::get('/jquery', function () {

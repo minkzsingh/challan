@@ -25,10 +25,19 @@ function getColumns(url) {
                     data: "id"
                 },
                 {
-                    data: "name"
+                    data: "item_name"
                 },
                 {
                     data: "quantity"
+                }
+            ]
+            break;
+        case 'api/company':
+            col = [{
+                    data: "id"
+                },
+                {
+                    data: "company_name"
                 }
             ]
             break;

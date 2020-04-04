@@ -8,7 +8,7 @@ use App\Challan;
 
 class Company extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = ["company_name"];
 
     public function challans()
     {

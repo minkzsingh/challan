@@ -58,7 +58,7 @@ $(document).ready(function() {
         }
 
         var data = {
-            item_name: name,
+            name: name,
             quantity: quantity
         };
 
@@ -73,7 +73,7 @@ $(document).ready(function() {
         $('#my-modal').modal('show');
         $('#my-modal').attr('row_id', data.id).attr('status', 'edit');
         $('#my-modal-title').text('Edit Item');
-        $('#item_name').val(data.item_name);
+        $('#item_name').val(data.name);
         $('#quantity').val(data.quantity);
         $('#save').text('Update');
     });

@@ -8,7 +8,7 @@ use App\ChallanItem;
 
 class Item extends Model
 {
-    protected $fillable = ["name", "quantity"];
+    protected $fillable = ["item_name", "quantity"];
 
     //Relationships
     public function challanItems()

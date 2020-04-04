@@ -9,7 +9,7 @@ class CompanyController extends Controller
 {
     public function index()
     {
-        return Company::all();
+        return array("data" => Company::all());
     }
 
     public function show(Company $company)
