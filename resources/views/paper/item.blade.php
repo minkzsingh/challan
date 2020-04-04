@@ -21,18 +21,6 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- @foreach(\App\Item::all() as $item)
-                <tr>
-                    <th>{{ $item->id }}</th>
-                    <td>{{ $item->name }}</td>
-                    <td>{{ $item->quantity }}</td>
-                    <td>{{ $item->created_at }}</td>
-                    <td>
-                        <a class="ml-2 edit_modal"><i class="glyphicon glyphicon-edit"></i></a>
-                        <a class="ml-2 delete_modal"><i class="glyphicon glyphicon-trash"></i></a>
-                    </td>
-                </tr>
-                @endforeach -->
             </tbody>
         </table>
     </div>
@@ -146,7 +134,6 @@
                     table.ajax.reload();
                 },
                 success: function(res) {
-                    console.log(res)
                 }
             });
         });

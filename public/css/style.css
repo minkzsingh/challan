@@ -16,3 +16,8 @@
 .p-lr-30 {
     padding: 0 31px;
 }
+
+.modal-header .close {
+    margin-top: -38px !important;
+    font-size: 36px !important;
+}
