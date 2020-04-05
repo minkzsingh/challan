@@ -11,8 +11,8 @@
         name='viewport' />
 
     <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet"> -->
     <!-- <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> -->
 
     <!-- CSS Files -->
@@ -22,6 +22,8 @@
     <link href="{{ asset('css/datatable.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/bootstra/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/select2/css/select2.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
 
     <!-- 
         <link href="{{ asset('assets/handsontable/dist/handsontable.full.css') }}" rel="stylesheet">

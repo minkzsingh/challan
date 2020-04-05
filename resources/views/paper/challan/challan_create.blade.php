@@ -39,7 +39,7 @@
                         <button type="button" id="minus" class="hide"><i class="fa fa-minus-circle fa-2x"
                                 aria-hidden="true"></i></i></button>
                     </div>
-                    <div class="col-md-1 form-group challan_id">0</div>
+                    <div class="col-md-1 form-group challan_id">1</div>
                     <div class="col-md-3">
                         <select class="select2 selec" data-placeholder="Select Item">
                             <option></option>
@@ -49,9 +49,11 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-md-1 form-group">0</div>
-                    <div class="col-md-2 form-group"><input type="text" class="form-control" name="quantity" /></div>
-                    <div class="col-md-2 form-group"><input type="text" class="form-control" name="rate" /></div>
+                    <div class="col-md-1 form-group r_qty">0</div>
+                    <div class="col-md-2 form-group"><input type="text" class="form-control" name="quantity"
+                            value="0" /></div>
+                    <div class="col-md-2 form-group"><input type="text" class="form-control" name="rate" value="0" />
+                    </div>
                     <div class="col-md-2 form-group"><span id="amount">0</span></div>
                 </div>
             </div>
@@ -91,7 +93,11 @@ $(document).ready(function() {
         var html = $('.copy_div').first('div');
         html.find('.selec').select2('destroy');
 
+
         var cloned = html.clone(true);
+        cloned.find('.r_qty').text(0);
+        cloned.find("input[name='quantity']").val(0);
+        cloned.find("input[name='rate']").val(0);
 
         $('#multi-params').append(cloned);
         $.each($('.selec'), function(a) {
