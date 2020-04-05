@@ -10,7 +10,7 @@
 }
 
 .wrap {
-    max-height: 1100px;
+    max-height: 600px;
     overflow: auto;
 }
 
@@ -31,14 +31,20 @@
     text-align: center;
 }
 
-.item-container {
-    border: 1px solid black;
-}
-
 th[colspan="5"] {
     text-align: right;
 }
 
 .mt-18 {
     margin-top: 18px;
+}
+
+form {
+    position: relative;
+}
+
+#plus {
+    position: absolute;
+    left: 14px;
+    bottom: 69px;
 }
