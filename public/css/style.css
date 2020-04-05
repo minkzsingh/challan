@@ -5,12 +5,17 @@
 }
 
 #wrapper {
-    padding: 20px;
+    padding: 0 20px 20px 20px;
     margin: 0 auto;
 }
 
+.wrap {
+    max-height: 1100px;
+    overflow: auto;
+}
+
 .ml-2 {
-    margin-left: 10px;
+    margin-left: 10px !important;
 }
 
 .p-lr-30 {
@@ -24,4 +29,16 @@
 
 .swal-footer {
     text-align: center;
+}
+
+.item-container {
+    border: 1px solid black;
+}
+
+th[colspan="5"] {
+    text-align: right;
+}
+
+.mt-18 {
+    margin-top: 18px;
 }
