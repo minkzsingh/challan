@@ -15,7 +15,7 @@ class Challan extends Model
     //Mutators
     public function getCompanyNameAttribute()
     {
-        return $this->company->name;
+        return $this->company->company_name;
     }
 
     //Relationships

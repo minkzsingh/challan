@@ -41,6 +41,18 @@ function getColumns(url) {
                 }
             ]
             break;
+        case 'api/challan':
+            col = [{
+                    data: "model_id"
+                },
+                {
+                    data: "company_name"
+                },
+                {
+                    data: "total_amount"
+                }
+            ]
+            break;
 
         default:
             break;

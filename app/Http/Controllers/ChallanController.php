@@ -9,7 +9,7 @@ class ChallanController extends Controller
 {
     public function index()
     {
-        return Challan::all();
+        return array("data" => Challan::all());
     }
 
     public function show(Challan $challan)

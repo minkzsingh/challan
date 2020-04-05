@@ -37,6 +37,12 @@
         <li>
             <a href="{{route('challan')}}">
                 <i class="nc-icon nc-bell-55"></i>
+                <p>Challan List</p>
+            </a>
+        </li>
+        <li>
+            <a href="{{route('challan_create')}}">
+                <i class="nc-icon nc-bell-55"></i>
                 <p>Challan</p>
             </a>
         </li>

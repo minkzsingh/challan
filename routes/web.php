@@ -13,36 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('paper.dashboard');
-});
-
-Route::get('/dashboard', function () {
-    return view('paper.dashboard');
-})->name('dashboard');
-
-Route::get('/item', function () {
-    return view('paper.item.item');
-})->name('item');
-
-Route::get('/company', function () {
-    return view('paper.company.company');
-})->name('company');
-
-Route::get('/challan', function () {
-    return view('paper.challan.challan');
-})->name('challan');
-
-Route::get('/jquery', function () {
-    return view('jquery');
-})->name('jquery');
-
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-
 Route::prefix('api')->group(function () {
     Route::resource('item', 'ItemController');
     Route::post('item/custom/datatable', 'ItemController@datatable');
