@@ -39,7 +39,7 @@
                         <button type="button" id="minus" class="hide"><i class="fa fa-minus-circle fa-2x"
                                 aria-hidden="true"></i></i></button>
                     </div>
-                    <div class="col-md-1 form-group challan_id"></div>
+                    <div class="col-md-1 form-group challan_id">0</div>
                     <div class="col-md-3">
                         <select class="select2 selec" data-placeholder="Select Item">
                             <option></option>
@@ -49,7 +49,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-md-1 form-group">10</div>
+                    <div class="col-md-1 form-group">0</div>
                     <div class="col-md-2 form-group"><input type="text" class="form-control" name="quantity" /></div>
                     <div class="col-md-2 form-group"><input type="text" class="form-control" name="rate" /></div>
                     <div class="col-md-2 form-group"><span id="amount">0</span></div>
@@ -61,7 +61,7 @@
             <div class="row mt-18">
                 <div class="col-md-8 form-group"></div>
                 <div class="col-md-2 form-group" style="font-weight: bolder;">Total Amount</div>
-                <div class="col-md-2 form-group">100</div>
+                <div class="col-md-2 form-group" id="total_amount">0</div>
             </div>
         </form>
     </div>
@@ -84,7 +84,6 @@ $(document).ready(function() {
     //Select Company
     $('#sel_company').on('select2:select', function() {
         $('form').removeClass('hide');
-
     });
 
     //Plus Rows
@@ -117,6 +116,29 @@ $(document).ready(function() {
         console.log($(this).find(':selected').data('item_id'));
     });
 
+    $("input[name='quantity']").on('keyup', function() {
+        if (!$.isNumeric(this.value) && this.value != '') {
+            toastr.error('Please Enter Only Number in Quantity Column');
+            return false;
+        }
+
+        var r_qty = parseInt($(this).parent().prev().text()) - this.value;
+        if (r_qty <= 0) {
+            toastr.error('Stock Not Available');
+            return false;
+        }
+        $(this).parent().prev().text(r_qty);
+        calculateRate(this);
+    });
+
+    $("input[name='rate']").on('keyup', function() {
+        if (!$.isNumeric(this.value) && this.value != '') {
+            toastr.error('Please Enter Only Number in Rate Column');
+            return false;
+        }
+        calculateRate();
+    });
+
 
     //Add
     $('#save').on('click', function() {
@@ -129,6 +151,29 @@ $(document).ready(function() {
             $(this).text(challan_no);
             challan_no++;
         });
+    }
+
+    function calculateRate() {
+
+
+
+        $('#multi-params .copy_div').each(function(k, v) {
+            var qty = $(this).find("input[name='quantity']").val();
+            var rate = $(this).find("input[name='rate']").val();
+
+            $(this).find('#amount').text(qty * rate);
+        });
+
+        finalAmount();
+    }
+
+    function finalAmount() {
+        var total = 0;
+        $('#multi-params .copy_div').each(function(k, v) {
+            total += parseInt($(this).find('#amount').text());
+        });
+
+        $('#total_amount').text(total);
     }
 });
 </script>
