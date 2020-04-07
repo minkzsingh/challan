@@ -160,9 +160,6 @@ $(document).ready(function() {
     }
 
     function calculateRate() {
-
-
-
         $('#multi-params .copy_div').each(function(k, v) {
             var qty = $(this).find("input[name='quantity']").val();
             var rate = $(this).find("input[name='rate']").val();
@@ -181,6 +178,13 @@ $(document).ready(function() {
 
         $('#total_amount').text(total);
     }
+
+    //Print
+    $('#print').on('click', function() {
+        url = 'api/print';
+        data = '';
+        print(url, data);
+    });
 });
 </script>
 @endsection

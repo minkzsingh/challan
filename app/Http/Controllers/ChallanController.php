@@ -59,4 +59,11 @@ class ChallanController extends Controller
     {
         return ["last_id" => Challan::orderBy('created_at', 'desc')->first()->model_id + 1];
     }
+
+    public function getPrint()
+    {
+        $data = ['name' => 'Print'];
+        $pdf = \PDF::loadView('paper.challan.challan_pdf', $data);
+        return $pdf->stream('challan.pdf');
+    }
 }

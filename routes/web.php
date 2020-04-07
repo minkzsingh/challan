@@ -26,4 +26,9 @@ Route::prefix('api')->group(function () {
 
     //Dashboard Data
     Route::post('dashboard', 'DashBoardController@getData');
+    Route::any('print', 'ChallanController@getPrint');
+});
+
+Route::get('print', function () {
+    return view('paper.challan.challan_pdf');
 });

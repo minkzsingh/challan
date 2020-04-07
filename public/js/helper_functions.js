@@ -61,3 +61,24 @@ function deleteData(url, table) {
             }
         });
 }
+
+//Delete Data Ajax
+function print(url, data) {
+    $.ajax({
+            url: url,
+            type: 'GET',
+            data: data,
+            complete: function() {},
+            success: function(res) {
+                log(res)
+                window.open(url);
+            }
+        }).done(function(data) {
+
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {});
+}
+
+function log(log) {
+    console.log(log);
+}
