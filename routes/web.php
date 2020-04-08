@@ -32,3 +32,7 @@ Route::prefix('api')->group(function () {
 Route::get('print', function () {
     return view('paper.challan.challan_pdf');
 });
+
+Route::get('livewire', function () {
+    return view('lara_livewire.index');
+});
