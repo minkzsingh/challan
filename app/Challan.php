@@ -44,9 +44,10 @@ class Challan extends Model
 
         $challan->company()->associate($request['company_id']);
         $challan->fill($request)->save();
-
+        $challan->challanItems()->createMany($request['item_arr']);
         //Associate Relationships
-        $challan->associateRelationships($request);
+        //$challan->associateRelationships($request);
+        ChallanItem::updateItem($request['item_arr']);
 
         return $challan->load('challanItems');
     }

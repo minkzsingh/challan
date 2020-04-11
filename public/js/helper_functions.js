@@ -1,5 +1,5 @@
 //Save data Ajax
-function saveData(url, type, data, modal_id, table, status) {
+function saveData(url, type, data, modal_id = '', table = '', status = '') {
     $.ajax({
             url: url,
             type: type,
@@ -16,8 +16,10 @@ function saveData(url, type, data, modal_id, table, status) {
                 toastr.success(msg);
             }
         }).done(function(data) {
-            $(modal_id).modal('hide');
-            table.ajax.reload();
+            if (modal_id != '' & table != '') {
+                $(modal_id).modal('hide');
+                table.ajax.reload();
+            }
         })
         .fail(function(jqXHR, textStatus, errorThrown) {
             var error = jqXHR.responseJSON.errors;

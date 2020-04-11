@@ -39,6 +39,13 @@ $(document).ready(function() {
         }
     });
 
+    //Delete 
+    $('#table_id tbody').on('click', 'button.delete', function() {
+        var data = table.row($(this).parents('tr')).data();
+
+        //Params -- url, row id, table to reload
+        deleteData('api/challan/' + data.id, table);
+    });
 });
 </script>
 @endsection

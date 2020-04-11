@@ -34,7 +34,9 @@ Route::get('/challan', function () {
 })->name('challan');
 
 Route::get('/challan_create', function () {
-    return view('paper.challan.challan_create');
+    $rec = \App\Challan::max('model_id');
+    $max_id = $rec ? $rec + 1 : 50;
+    return view('paper.challan.challan_create', compact('max_id'));
 })->name('challan_create');
 
 Route::get('/jquery', function () {

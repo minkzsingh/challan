@@ -4,12 +4,18 @@
 <div class="fluid">
     <div id="wrapper" class="wrap">
         <div class="row text-center font-weight-bolder">
-            <div class="col-md-9" style="padding-left: 70px;">
+
+            <div class="col-md-2 ch">
+                <h4 for="item_name" class="font-weight-bolder">Challan ID</h4>
+                <div class="challan_id">{{ $max_id }}</div>
+
+            </div>
+            <div class="col-md-7" style="padding-left: 70px;">
                 <h3 for="item_name" class="font-weight-bolder">Select Company</h3>
                 <select class="select2" id="sel_company" data-placeholder="Select Company">
                     <option></option>
-                    @foreach(\App\Company::pluck('company_name') as $comp)
-                    <option value="{{$comp}}">{{ $comp }}</option>
+                    @foreach(\App\Company::all() as $comp)
+                    <option value="{{ $comp->id }}">{{ $comp->company_name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -22,12 +28,11 @@
                 </button>
             </div>
         </div>
-        <form class="form text-center">
+        <form class="form text-center hide">
             <div id="multi-params">
                 <div class="row mt-18 " style="border-bottom: 1px solid;">
                     <div class="col-md-1 form-group"></div>
-                    <div class="col-md-1 form-group">Challan ID</div>
-                    <div class="col-md-3">Select Item</div>
+                    <div class="col-md-4">Select Item</div>
                     <div class="col-md-1">Remaning Qty</div>
                     <div class="col-md-2 form-group">Quantity</div>
                     <div class="col-md-2 form-group">Rate</div>
@@ -39,8 +44,7 @@
                         <button type="button" id="minus" class="hide"><i class="fa fa-minus-circle fa-2x"
                                 aria-hidden="true"></i></i></button>
                     </div>
-                    <div class="col-md-1 form-group challan_id">1</div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <select class="select2 selec" data-placeholder="Select Item">
                             <option></option>
                             @foreach(\App\Item::all() as $item)
@@ -107,19 +111,16 @@ $(document).ready(function() {
         });
 
         $('#multi-params .copy_div').find('#minus').removeClass('hide').last().addClass('hide');
-        setChallanId();
     });
 
     //Delete row
     $('#minus').on('click', function() {
         $(this).parent().parent().remove();
-        setChallanId();
     });
 
     //Set Remaing Quantity
     $('.selec').on('select2:select', function() {
         $(this).parent().next().text($(this).val());
-        console.log($(this).find(':selected').data('item_id'));
     });
 
     $("input[name='quantity']").on('keyup', function() {
@@ -148,16 +149,28 @@ $(document).ready(function() {
 
     //Add
     $('#save').on('click', function() {
-        var company = $('#sel_company').val();
-    });
+        var company_id = $('#sel_company').val();
+        var item_arr = {};
+        item_arr = $('#multi-params .copy_div').map(function(k, v) {
+            $this = $(this);
+            return {
+                item_id: $this.find('.selec :selected').data('item_id'),
+                quantity: $this.find('input[name="quantity"]').val(),
+                price: $this.find('input[name="rate"]').val(),
+                amount: $this.find('#amount').text()
+            }
+        }).get();
 
-    function setChallanId() {
-        var challan_no = 1;
-        $.each($('.challan_id'), function(a) {
-            $(this).text(challan_no);
-            challan_no++;
-        });
-    }
+        var data = {
+            model_id: $('.challan_id').text(),
+            company_id: company_id,
+            item_arr: item_arr,
+            total_amount: $('#total_amount').text()
+        };
+
+        //Params == url, type(POST), request data, modal id to hide, table to reload
+        saveData('api/challan', 'POST', data);
+    });
 
     function calculateRate() {
         $('#multi-params .copy_div').each(function(k, v) {

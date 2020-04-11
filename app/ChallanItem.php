@@ -40,10 +40,13 @@ class ChallanItem extends Model
         });
     }
 
-    public function updateItem($request)
+    public static function updateItem($request)
     {
-        $item = Item::where('id', $request["item_id"])->first();
-        $item->quantity = $item->quantity - $request["quantity"];
-        $item->save();
+        foreach ($request as $r) {
+
+            $item = Item::where('id', $r["item_id"])->first();
+            $item->quantity = $item->quantity - $r["quantity"];
+            $item->save();
+        }
     }
 }
