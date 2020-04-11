@@ -60,10 +60,18 @@ class ChallanController extends Controller
         return ["last_id" => Challan::orderBy('created_at', 'desc')->first()->model_id + 1];
     }
 
-    public function getPrint()
+    public function getPrint($print_id)
     {
-        $data = ['name' => 'Print'];
-        $pdf = \PDF::loadView('paper.challan.challan_pdf', $data);
+        $sql = "SELECT a.id, a.total_amount, b.quantity, b.price, a.model_id, c.item_name, DATE(a.created_at) as date,  SUM(b.quantity * b.price) as amt  FROM challans as a
+                LEFT JOIN challan_items as b ON a.id = b.challan_id 
+                LEFT JOIN items as c ON b.item_id = c.id
+                WHERE a.id = $print_id
+                GROUP BY c.id, b.price, b.quantity
+                ORDER BY MAX(b.id) ASC";
+
+        $record = \DB::select(\DB::raw($sql));
+
+        $pdf = \PDF::loadView('paper.challan.challan_pdf', compact('record'));
         return $pdf->stream('challan.pdf');
     }
 }

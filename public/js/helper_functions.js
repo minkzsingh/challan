@@ -16,6 +16,10 @@ function saveData(url, type, data, modal_id = '', table = '', status = '') {
                 toastr.success(msg);
             }
         }).done(function(data) {
+            if (modal_id == 'pdf') {
+                window.open('api/print/' + data.id);
+                return false;
+            }
             if (modal_id != '' & table != '') {
                 $(modal_id).modal('hide');
                 table.ajax.reload();
@@ -62,23 +66,6 @@ function deleteData(url, table) {
                 swal("Your record is safe!");
             }
         });
-}
-
-//Delete Data Ajax
-function print(url, data) {
-    $.ajax({
-            url: url,
-            type: 'GET',
-            data: data,
-            complete: function() {},
-            success: function(res) {
-                log(res)
-                window.open(url);
-            }
-        }).done(function(data) {
-
-        })
-        .fail(function(jqXHR, textStatus, errorThrown) {});
 }
 
 function log(log) {

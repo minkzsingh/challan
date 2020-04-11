@@ -26,11 +26,19 @@ Route::prefix('api')->group(function () {
 
     //Dashboard Data
     Route::post('dashboard', 'DashBoardController@getData');
-    Route::any('print', 'ChallanController@getPrint');
+    Route::any('print/{print_id}', 'ChallanController@getPrint');
 });
 
-Route::get('print', function () {
-    return view('paper.challan.challan_pdf');
+Route::get('print/{print_id}', function ($print_id) {
+    $sql = "SELECT a.id, a.total_amount, b.quantity, b.price, a.model_id, c.item_name, DATE(a.created_at) as date,  SUM(b.quantity * b.price) as amt  FROM challans as a
+                LEFT JOIN challan_items as b ON a.id = b.challan_id 
+                LEFT JOIN items as c ON b.item_id = c.id
+                WHERE a.id = $print_id
+                GROUP BY c.id, b.price, b.quantity
+                ORDER BY MAX(b.id) ASC";
+
+    $record = \DB::select(\DB::raw($sql));
+    return view('paper.challan.challan_pdf', compact('record'));
 });
 
 Route::get('livewire', function () {

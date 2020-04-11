@@ -20,9 +20,6 @@
                 </select>
             </div>
             <div class="col-md-3 mt-18">
-                <button type="button" class="ml-2 btn btn-raised btn-raised btn-primary pull-right" id="save">
-                    <i class="fa fa-check-square-o"></i> Save
-                </button>
                 <button type="button" class="btn btn-raised btn-raised btn-primary pull-right" id="print">
                     <i class="fa fa-check-square-o"></i> Print
                 </button>
@@ -76,7 +73,7 @@
 <script>
 $(document).ready(function() {
     $('.select2').select2({
-        width: '200px'
+        width: '300px'
     });
 
     //Data Table
@@ -106,7 +103,7 @@ $(document).ready(function() {
         $('#multi-params').append(cloned);
         $.each($('.selec'), function(a) {
             $(this).removeAttr('data-select2-id').select2({
-                width: '200px'
+                width: '300px'
             });
         });
 
@@ -148,9 +145,15 @@ $(document).ready(function() {
 
 
     //Add
-    $('#save').on('click', function() {
+    $('#print').on('click', function() {
         var company_id = $('#sel_company').val();
         var item_arr = {};
+
+        if (company_id == '') {
+            toastr.error('Please Select Company');
+            return false;
+        }
+
         item_arr = $('#multi-params .copy_div').map(function(k, v) {
             $this = $(this);
             return {
@@ -161,6 +164,11 @@ $(document).ready(function() {
             }
         }).get();
 
+        if ($('#total_amount').text() == 0) {
+            toastr.error('Please Enter Data In Item Section');
+            return false;
+        }
+
         var data = {
             model_id: $('.challan_id').text(),
             company_id: company_id,
@@ -169,7 +177,7 @@ $(document).ready(function() {
         };
 
         //Params == url, type(POST), request data, modal id to hide, table to reload
-        saveData('api/challan', 'POST', data);
+        saveData('api/challan', 'POST', data, 'pdf');
     });
 
     function calculateRate() {
@@ -191,13 +199,6 @@ $(document).ready(function() {
 
         $('#total_amount').text(total);
     }
-
-    //Print
-    $('#print').on('click', function() {
-        url = 'api/print';
-        data = '';
-        print(url, data);
-    });
 });
 </script>
 @endsection
